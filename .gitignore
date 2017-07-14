@@ -1,0 +1,15 @@
+*.class
+
+# Package Files #
+
+.idea
+*.jar
+*.iml
+*.war
+*.ear
+
+xiaoqiao-project-common/target
+xiaoqiao-project-dao/target
+xiaoqiao-project-domain/target
+xiaoqiao-project-service/target
+xiaoqiao-project-web/target

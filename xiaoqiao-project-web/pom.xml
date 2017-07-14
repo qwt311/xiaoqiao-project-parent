@@ -1,0 +1,90 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <parent>
+        <artifactId>xiaoqiao-project-parent</artifactId>
+        <groupId>com.xiaoqiao.project</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>xiaoqiao-project-web</artifactId>
+    <packaging>war</packaging>
+    <name>xiaoqiao-project-web Maven Webapp</name>
+    <url>http://maven.apache.org</url>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.xiaoqiao.project</groupId>
+            <artifactId>xiaoqiao-project-service</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
+
+
+
+    <build>
+        <finalName>xiaoqiao-project-web</finalName>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+                <includes>
+                    <include>spring/*.xml</include>
+                    <include>*.properties</include>
+                    <include>*.text</include>
+                    <include>log4j.dtd</include>
+                </includes>
+            </resource>
+        </resources>
+    </build>
+
+    <profiles>
+        <profile>
+            <!-- dev 环境-->
+            <id>dev</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <maven.jdbc.url>
+                    <![CDATA[jdbc:mysql://127.0.0.1:3306/project?useUnicode=true&characterEncoding=UTF-8]]]>
+                </maven.jdbc.url>
+                <maven.jdbc.driver>com.mysql.jdbc.Driver</maven.jdbc.driver>
+                <maven.jdbc.username>root</maven.jdbc.username>
+                <maven.jdbc.password>root</maven.jdbc.password>
+            </properties>
+        </profile>
+
+        <profile>
+            <!--test 环境-->
+            <id>test</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
+                <maven.jdbc.url>
+                    <![CDATA[jdbc:mysql://10.2.3.10:3306/project?useUnicode=true&characterEncoding=UTF-8]]]>
+                </maven.jdbc.url>
+                <maven.jdbc.driver>com.mysql.jdbc.Driver</maven.jdbc.driver>
+                <maven.jdbc.username>root</maven.jdbc.username>
+                <maven.jdbc.password>root</maven.jdbc.password>
+            </properties>
+        </profile>
+
+        <profile>
+            <!--  production 环境  -->
+            <id>production</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
+                <maven.jdbc.url>
+                    <![CDATA[jdbc:mysql://10.112.1.6:3306/project?useUnicode=true&characterEncoding=UTF-8]]]>
+                </maven.jdbc.url>
+                <maven.jdbc.driver>com.mysql.jdbc.Driver</maven.jdbc.driver>
+                <maven.jdbc.username>root</maven.jdbc.username>
+                <maven.jdbc.password>root</maven.jdbc.password>
+            </properties>
+        </profile>
+    </profiles>
+
+</project>
